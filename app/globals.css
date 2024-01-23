@@ -27,4 +27,7 @@
 }
 
 @layer utilities {
+  .button-large-text {
+    @apply text-heading-m;
+  }
 }
