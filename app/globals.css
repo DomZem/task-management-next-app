@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --primaryPurple: #635fc7;
+    --primaryPurpleHover: #a8a4ff;
+    --primaryLightPurple: #635fc71a;
+    --primaryLightPurpleHover: #635fc740;
+    --primaryBlack: #000112;
+    --primaryVeryDarkGrey: #20212c;
+    --primaryDarkGrey: #2b2c37;
+    --primaryLinesDark: #3e3f4e;
+    --primaryMediumGrey: #828fa3;
+    --primaryLinesLight: #e4ebfa;
+    --primaryLightGrey: #f4f7fd;
+    --primaryWhite: #ffffff;
+    --primaryRed: #ea5555;
+    --primaryRedHover: #ff9898;
+    --primaryBorder: #828fa340;
+  }
+
+  body {
+    @apply bg-primaryLightGrey text-primaryBlack dark:bg-primaryVeryDarkGrey dark:text-primaryWhite;
+  }
+}
+
+@layer utilities {
+}
