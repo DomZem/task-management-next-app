@@ -1,3 +1,4 @@
+import MenuList from '@/components/MenuList';
 import { ModeToggle } from '@/components/ModeToggle';
 import { Button } from '@/components/UI/Button';
 import logoImage from '@/public/logo.svg';
@@ -23,7 +24,7 @@ export default function BoardsLayout({ children }: BoardsLayoutProps) {
         </header>
 
         <section className="flex flex-1 flex-col justify-between">
-          {/* Menu list feature */}
+          <MenuList />
 
           <div className="flex flex-col gap-3 p-6">
             <ModeToggle />
