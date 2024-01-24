@@ -30,4 +30,8 @@
   .button-large-text {
     @apply text-heading-m;
   }
+
+  .label-text {
+    @apply text-[12px] font-bold capitalize leading-normal text-primaryMediumGrey dark:text-primaryWhite;
+  }
 }
