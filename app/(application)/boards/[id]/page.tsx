@@ -1,3 +1,4 @@
+import StatusList from '@/components/StatusList';
 import logoImage from '@/public/logo.svg';
 import Image from 'next/image';
 
@@ -15,7 +16,9 @@ export default function BoardDetailsPage() {
       </header>
 
       <div className="flex overflow-hidden">
-        <main className="flex-1 overflow-y-auto px-3 py-5"></main>
+        <main className="flex-1 overflow-y-auto px-3 py-5">
+          <StatusList />
+        </main>
       </div>
     </div>
   );
