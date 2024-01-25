@@ -1,6 +1,7 @@
 import useTasksQuery from '@/hooks/useTasksQuery';
 import { Status } from './BoardForm/formSchema';
 import Dot from './Dot';
+import TaskList from './TaskList';
 
 interface StatusListItemProps {
   status: Status;
@@ -32,7 +33,7 @@ export default function StatusListItem({
         </h3>
       </div>
 
-      {/* Tasks List */}
+      {tasks.length > 0 && <TaskList tasks={tasks} />}
     </li>
   );
 }
