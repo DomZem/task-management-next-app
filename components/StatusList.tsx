@@ -2,6 +2,7 @@
 
 import { default as useBoardQuery } from '@/hooks/board/useBoard';
 import useStatuses from '@/hooks/useStatuses';
+import BoardEmpty from './BoardEmpty';
 import StatusListItem from './StatusListItem';
 import Loading from './UI/Loading';
 
@@ -31,11 +32,11 @@ export default function StatusList() {
   }
 
   if (!statuses?.length) {
-    return <div>board empty</div>;
+    return <BoardEmpty boardId={board.id} boardName={board.name} />;
   }
 
   return (
-    <ul className="flex min-h-full min-w-fit justify-start gap-x-4">
+    <ul className="justify-satrt flex min-h-full min-w-fit gap-x-4">
       {statuses.map((status) => (
         <StatusListItem status={status} key={status.id} />
       ))}
