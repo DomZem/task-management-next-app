@@ -1,6 +1,7 @@
 import useTasks from '@/hooks/task/useTasks';
 import { Status } from './BoardForm/formSchema';
 import Dot from './Dot';
+import StatusListItemSkeleton from './StatusListItemSkeleton';
 import TaskList from './TaskList';
 
 interface StatusListItemProps {
@@ -13,7 +14,7 @@ export default function StatusListItem({
   const { data: tasks, isLoading, error } = useTasks(id);
 
   if (isLoading) {
-    return <div>loading ...</div>;
+    return <StatusListItemSkeleton />;
   }
 
   if (!tasks) {
