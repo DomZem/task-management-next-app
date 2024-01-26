@@ -1,5 +1,6 @@
 import { HiDotsVertical } from 'react-icons/hi';
 import DeleteTaskModal from './DeleteTaskModal';
+import SubtaskList from './SubtaskList';
 import EditTaskForm from './TaskForm/EditTaskForm';
 import { Subtask, Task } from './TaskForm/formSchema';
 import TaskStatus from './TaskStatus';
@@ -44,6 +45,8 @@ export default function TaskListItemContent({
       </div>
 
       {description && <DialogDescription>{description}</DialogDescription>}
+
+      {!!subtasks.length && <SubtaskList subtasks={subtasks} />}
 
       <TaskStatus taskId={id} statusId={statusId} />
     </DialogContent>
