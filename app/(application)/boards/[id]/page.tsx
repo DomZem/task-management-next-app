@@ -1,3 +1,4 @@
+import BoardActions from '@/components/BoardActions';
 import StatusList from '@/components/StatusList';
 import logoImage from '@/public/logo.svg';
 import Image from 'next/image';
@@ -12,7 +13,7 @@ export default function BoardDetailsPage() {
           <h2>Board title</h2>
         </section>
 
-        {/* Board Actions */}
+        <BoardActions />
       </header>
 
       <div className="flex overflow-hidden">
