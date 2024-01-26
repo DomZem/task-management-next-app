@@ -34,4 +34,12 @@
   .label-text {
     @apply text-[12px] font-bold capitalize leading-normal text-primaryMediumGrey dark:text-primaryWhite;
   }
+
+  .body-l-text {
+    @apply text-body-l;
+  }
+
+  .heading-l-text {
+    @apply text-heading-l;
+  }
 }
