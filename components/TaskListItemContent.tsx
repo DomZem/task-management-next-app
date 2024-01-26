@@ -2,6 +2,7 @@ import { HiDotsVertical } from 'react-icons/hi';
 import DeleteTaskModal from './DeleteTaskModal';
 import EditTaskForm from './TaskForm/EditTaskForm';
 import { Subtask, Task } from './TaskForm/formSchema';
+import TaskStatus from './TaskStatus';
 import { DialogContent, DialogDescription, DialogTitle } from './UI/Dialog';
 import { Popover, PopoverContent, PopoverTrigger } from './UI/Popover';
 
@@ -43,6 +44,8 @@ export default function TaskListItemContent({
       </div>
 
       {description && <DialogDescription>{description}</DialogDescription>}
+
+      <TaskStatus taskId={id} statusId={statusId} />
     </DialogContent>
   );
 }
