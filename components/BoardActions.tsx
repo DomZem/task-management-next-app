@@ -4,6 +4,7 @@ import useBoardQuery from '@/hooks/useBoardQuery';
 import useStatusesQuery from '@/hooks/useStatusesQuery';
 import { HiDotsVertical } from 'react-icons/hi';
 import EditBoardForm from './BoardForm/EditBoardForm';
+import DeleteBoardModal from './DeleteBoardModal';
 import CreateTaskForm from './TaskForm/CreateTaskForm';
 import { DialogTrigger } from './UI/Dialog';
 import { Popover, PopoverContent, PopoverTrigger } from './UI/Popover';
@@ -48,6 +49,10 @@ export default function BoardActions() {
                   <button>Edit</button>
                 </DialogTrigger>
               </EditBoardForm>
+            </li>
+
+            <li>
+              <DeleteBoardModal boardId={board.id} boardName={board.name} />
             </li>
           </ul>
         </PopoverContent>
