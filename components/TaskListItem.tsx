@@ -3,6 +3,7 @@ import { getCompletedSubtasksAmount } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { Task } from './TaskForm/formSchema';
 import TaskListItemContent from './TaskListItemContent';
+import TaskListItemSkeleton from './TaskListItemSkeleton';
 import { Dialog, DialogTrigger } from './UI/Dialog';
 
 interface TaskListItemProps {
@@ -21,7 +22,7 @@ export default function TaskListItem({ task }: TaskListItemProps) {
   const { data: subtasks, isLoading, error } = useSubtasks(task.id);
 
   if (isLoading) {
-    return <div>loading ...</div>;
+    return <TaskListItemSkeleton />;
   }
 
   if (error) {
