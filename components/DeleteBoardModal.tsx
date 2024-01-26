@@ -1,6 +1,6 @@
 'use client';
 
-import useDeleteBoard from '@/hooks/useDeleteBoard';
+import useDeleteBoard from '@/hooks/board/useDeleteBoard';
 import {
   AlertDialog,
   AlertDialogAction,

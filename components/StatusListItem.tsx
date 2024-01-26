@@ -1,4 +1,4 @@
-import useTasksQuery from '@/hooks/useTasksQuery';
+import useTasks from '@/hooks/task/useTasks';
 import { Status } from './BoardForm/formSchema';
 import Dot from './Dot';
 import TaskList from './TaskList';
@@ -10,7 +10,7 @@ interface StatusListItemProps {
 export default function StatusListItem({
   status: { id, name, color },
 }: StatusListItemProps) {
-  const { data: tasks, isLoading, error } = useTasksQuery(id);
+  const { data: tasks, isLoading, error } = useTasks(id);
 
   if (isLoading) {
     return <div>loading ...</div>;

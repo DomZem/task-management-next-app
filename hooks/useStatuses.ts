@@ -11,7 +11,7 @@ export const getStatuses = async (boardId: number): Promise<Status[]> => {
   return response.data;
 };
 
-export default function useStatusesQuery() {
+export default function useStatuses() {
   const { slug } = useSlug();
   const boardId = parseInt(slug);
 

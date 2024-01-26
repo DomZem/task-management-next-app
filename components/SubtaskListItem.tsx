@@ -1,6 +1,6 @@
 'use client';
 
-import useUpdateSubtask from '@/hooks/useUpdateSubtask';
+import useUpdateSubtask from '@/hooks/subtask/useUpdateSubtask';
 import { Subtask } from './TaskForm/formSchema';
 import { Checkbox } from './UI/Checkbox';
 

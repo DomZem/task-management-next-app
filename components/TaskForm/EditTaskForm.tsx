@@ -1,6 +1,6 @@
 'use client';
 
-import useUpdateTask from '@/hooks/useUpdateTask';
+import useUpdateTask from '@/hooks/task/useUpdateTask';
 import TaskFormTemplate from './TaskFormTemplate';
 import { Subtask, Task } from './formSchema';
 

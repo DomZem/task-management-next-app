@@ -1,7 +1,7 @@
 'use client';
 
 import { colors } from '@/data/colors';
-import useBoardMutation from '@/hooks/useBoardMutation';
+import useCreateBoard from '@/hooks/board/useCreateBoard';
 import BoardFormTemplate from './BoardFormTemplate';
 import { Board } from './formSchema';
 
@@ -12,7 +12,7 @@ interface CreateBoardFormProps {
 export default function CreateBoardForm({
   children: dialogTrigger,
 }: CreateBoardFormProps) {
-  const { mutate, isPending, isSuccess } = useBoardMutation();
+  const { mutate, isPending, isSuccess } = useCreateBoard();
 
   return (
     <BoardFormTemplate

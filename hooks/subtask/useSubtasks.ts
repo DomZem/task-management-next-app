@@ -9,7 +9,7 @@ const getSubtasks = async (taskId: number) => {
   return response.data;
 };
 
-export default function useSubtasksQuery(taskId: number) {
+export default function useSubtasks(taskId: number) {
   return useQuery({
     queryFn: () => getSubtasks(taskId),
     queryKey: ['subtasks', taskId],

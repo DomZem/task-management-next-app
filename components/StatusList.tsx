@@ -1,7 +1,7 @@
 'use client';
 
-import { default as useBoardQuery } from '@/hooks/useBoardQuery';
-import useStatusesQuery from '@/hooks/useStatusesQuery';
+import { default as useBoardQuery } from '@/hooks/board/useBoard';
+import useStatuses from '@/hooks/useStatuses';
 import StatusListItem from './StatusListItem';
 import Loading from './UI/Loading';
 
@@ -12,7 +12,7 @@ export default function StatusList() {
     error: boardError,
   } = useBoardQuery();
 
-  const { data: statuses, isLoading, error } = useStatusesQuery();
+  const { data: statuses, isLoading, error } = useStatuses();
 
   if (isLoading || isBoardLoading) {
     return (

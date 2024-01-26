@@ -1,7 +1,7 @@
 import { Board } from '@/components/BoardForm/formSchema';
 import { axiosInstance } from '@/lib/axios';
 import { useQuery } from '@tanstack/react-query';
-import useSlug from './useSlug';
+import useSlug from '../useSlug';
 
 const getBoard = async (boardId: number): Promise<Omit<Board, 'statuses'>> => {
   const response = await axiosInstance.get(`/boards/${boardId}`, {
@@ -11,7 +11,7 @@ const getBoard = async (boardId: number): Promise<Omit<Board, 'statuses'>> => {
   return response.data;
 };
 
-export default function useBoardQuery() {
+export default function useBoard() {
   const { slug } = useSlug();
   const boardId = parseInt(slug);
 

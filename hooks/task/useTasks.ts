@@ -12,7 +12,7 @@ const getTasks = async (
   return response.data;
 };
 
-export default function useTasksQuery(statusId: number) {
+export default function useTasks(statusId: number) {
   return useQuery({
     queryFn: () => getTasks(statusId),
     queryKey: ['tasks', statusId],

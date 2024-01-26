@@ -1,4 +1,4 @@
-import useSubtasksQuery from '@/hooks/useSubtasksQuery';
+import useSubtasks from '@/hooks/subtask/useSubtasks';
 import { getCompletedSubtasksAmount } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { Task } from './TaskForm/formSchema';
@@ -18,7 +18,7 @@ const item = {
 };
 
 export default function TaskListItem({ task }: TaskListItemProps) {
-  const { data: subtasks, isLoading, error } = useSubtasksQuery(task.id);
+  const { data: subtasks, isLoading, error } = useSubtasks(task.id);
 
   if (isLoading) {
     return <div>loading ...</div>;

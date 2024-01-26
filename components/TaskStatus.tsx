@@ -1,5 +1,5 @@
-import useStatusesQuery from '@/hooks/useStatusesQuery';
-import useUpdateTaskStatus from '@/hooks/useUpdateTaskStatus';
+import useUpdateTaskStatus from '@/hooks/task/useUpdateTaskStatus';
+import useStatuses from '@/hooks/useStatuses';
 import {
   Select,
   SelectContent,
@@ -17,10 +17,10 @@ export default function TaskStatus({
   taskId,
   statusId: currentStatusId,
 }: TaskStatusProps) {
-  const { data: statuses, error, isLoading } = useStatusesQuery();
+  const { data: statuses, error, isLoading } = useStatuses();
   const { mutate, isPending } = useUpdateTaskStatus(taskId, currentStatusId);
 
-  // Return null, because in component above called StatusList is also uses useStatusesQuery hook and that component handle these request states
+  // Return null, because in component above called StatusList is also uses useStatuses hook and that component handle these request states
   if (isLoading || error || !statuses?.length) {
     return null;
   }

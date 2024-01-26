@@ -1,4 +1,4 @@
-import useStatusesQuery from '@/hooks/useStatusesQuery';
+import useStatuses from '@/hooks/useStatuses';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { IoMdAdd } from 'react-icons/io';
@@ -44,7 +44,7 @@ export default function TaskFormTemplate({
   isPending,
   isSuccess,
 }: TaskFormTemplateProps) {
-  const { data: statuses, isLoading, error } = useStatusesQuery();
+  const { data: statuses, isLoading, error } = useStatuses();
 
   const methods = useForm<Task>({
     resolver: zodResolver(taskFormSchema),

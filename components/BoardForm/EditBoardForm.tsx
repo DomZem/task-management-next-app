@@ -1,6 +1,6 @@
 'use client';
 
-import useUpdateBoard from '@/hooks/useUpdateBoard';
+import useUpdateBoard from '@/hooks/board/useUpdateBoard';
 import BoardFormTemplate from './BoardFormTemplate';
 import { Board, Status } from './formSchema';
 

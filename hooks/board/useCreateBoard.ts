@@ -12,7 +12,7 @@ const createBoard = async (board: Board) => {
   return response.data;
 };
 
-export default function useBoardMutation() {
+export default function useCreateBoard() {
   const queryClient = useQueryClient();
   const router = useRouter();
 

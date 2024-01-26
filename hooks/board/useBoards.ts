@@ -10,7 +10,7 @@ const getBoards = async (): Promise<Omit<Board, 'statuses'>[]> => {
   return response.data;
 };
 
-export default function useBoardsQuery() {
+export default function useBoards() {
   return useQuery({
     queryFn: getBoards,
     queryKey: ['boards'],

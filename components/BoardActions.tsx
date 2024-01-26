@@ -1,7 +1,7 @@
 'use client';
 
-import useBoardQuery from '@/hooks/useBoardQuery';
-import useStatusesQuery from '@/hooks/useStatusesQuery';
+import useBoardQuery from '@/hooks/board/useBoard';
+import useStatuses from '@/hooks/useStatuses';
 import { HiDotsVertical } from 'react-icons/hi';
 import EditBoardForm from './BoardForm/EditBoardForm';
 import DeleteBoardModal from './DeleteBoardModal';
@@ -15,7 +15,7 @@ export default function BoardActions() {
     isLoading: isBoardLoading,
     error: boardError,
   } = useBoardQuery();
-  const { data: statuses, isLoading, error } = useStatusesQuery();
+  const { data: statuses, isLoading, error } = useStatuses();
 
   if (
     isBoardLoading ||

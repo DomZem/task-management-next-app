@@ -1,6 +1,6 @@
 'use client';
 
-import useCreateTask from '@/hooks/useCreateTask';
+import useCreateTask from '@/hooks/task/useCreateTask';
 import TaskFormTemplate from './TaskFormTemplate';
 import { Task } from './formSchema';
 

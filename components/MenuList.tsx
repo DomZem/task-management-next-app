@@ -1,6 +1,6 @@
 'use client';
 
-import useBoardsQuery from '@/hooks/useBoardsQuery';
+import useBoards from '@/hooks/board/useBoards';
 import { TbLayoutBoardSplit } from 'react-icons/tb';
 import CreateBoardForm from './BoardForm/CreateBoardForm';
 import MenuListItem from './MenuListItem';
@@ -8,7 +8,7 @@ import { DialogTrigger } from './UI/Dialog';
 import Loading from './UI/Loading';
 
 export default function MenuList() {
-  const { data: boards, isLoading, error } = useBoardsQuery();
+  const { data: boards, isLoading, error } = useBoards();
 
   if (isLoading) {
     return (
