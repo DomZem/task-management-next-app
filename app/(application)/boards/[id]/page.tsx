@@ -1,5 +1,6 @@
 import BoardActions from '@/components/BoardActions';
 import BoardTitle from '@/components/BoardTitle';
+import MobileNav from '@/components/MobileNav';
 import StatusList from '@/components/StatusList';
 import logoImage from '@/public/logo.svg';
 import Image from 'next/image';
@@ -11,7 +12,11 @@ export default function BoardDetailsPage() {
         <section className="flex items-center gap-4">
           <Image src={logoImage} alt="logo" />
 
-          <BoardTitle />
+          <div className="flex items-center gap-2">
+            <BoardTitle />
+
+            <MobileNav />
+          </div>
         </section>
 
         <BoardActions />

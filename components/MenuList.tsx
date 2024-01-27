@@ -27,7 +27,7 @@ export default function MenuList() {
   }
 
   return (
-    <div className="pr-6 pt-8">
+    <div className="pr-6 pt-4">
       <div className="flex flex-col overflow-hidden">
         <h3 className="mb-[19px] ml-6 text-[12px] font-bold uppercase leading-normal tracking-[2.4px] text-primaryMediumGrey">
           all boards ({boards.length})
