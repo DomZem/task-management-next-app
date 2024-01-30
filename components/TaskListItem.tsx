@@ -26,7 +26,14 @@ export default function TaskListItem({ task }: TaskListItemProps) {
   }
 
   if (error) {
-    return <div>error</div>;
+    return (
+      <li className="rounded-lg bg-primaryWhite px-4 py-[23px] shadow-task dark:bg-primaryDarkGrey">
+        <h4 className="mb-2 text-heading-m text-primaryRed">Error</h4>
+        <p className="text-body-m font-medium text-primaryMediumGrey">
+          Something went wrong during fetch subtasks
+        </p>
+      </li>
+    );
   }
 
   return (
