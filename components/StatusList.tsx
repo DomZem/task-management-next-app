@@ -2,8 +2,11 @@
 
 import { default as useBoardQuery } from '@/hooks/board/useBoard';
 import useStatuses from '@/hooks/useStatuses';
+import { MdAdd } from 'react-icons/md';
 import BoardEmpty from './BoardEmpty';
+import EditBoardForm from './BoardForm/EditBoardForm';
 import StatusListItem from './StatusListItem';
+import { DialogTrigger } from './UI/Dialog';
 import Loading from './UI/Loading';
 
 export default function StatusList() {
@@ -41,7 +44,22 @@ export default function StatusList() {
         <StatusListItem status={status} key={status.id} />
       ))}
 
-      {/* Edit board future */}
+      <EditBoardForm
+        boardId={board.id}
+        boardName={board.name}
+        statuses={statuses}
+      >
+        <DialogTrigger asChild>
+          <li className="min-h-full w-[280px] pt-10">
+            <div className="flex h-full items-center justify-center rounded-md bg-column text-primaryMediumGrey duration-200 hover:text-primaryPurple dark:bg-columnDark">
+              <button className="flex h-full w-full items-center justify-center text-2xl font-bold capitalize">
+                <MdAdd />
+                new column
+              </button>
+            </div>
+          </li>
+        </DialogTrigger>
+      </EditBoardForm>
     </ul>
   );
 }
