@@ -3,10 +3,9 @@
 import { FaChevronDown } from 'react-icons/fa';
 
 import { useState } from 'react';
-import { MdLogout } from 'react-icons/md';
+import LogoutButton from './LogoutButton';
 import MenuList from './MenuList';
 import { ModeToggle } from './ModeToggle';
-import { Button } from './UI/Button';
 import { Dialog, DialogContent, DialogTrigger } from './UI/Dialog';
 
 export default function MobileNav() {
@@ -24,12 +23,7 @@ export default function MobileNav() {
           <MenuList />
           <div className="flex flex-col gap-3 p-4">
             <ModeToggle />
-            <Button className="cursor-pointer" asChild>
-              <div className="flex items-center justify-center gap-3">
-                <MdLogout className="text-base" />
-                logout
-              </div>
-            </Button>
+            <LogoutButton />
           </div>
         </section>
       </DialogContent>
