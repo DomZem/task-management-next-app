@@ -2,8 +2,10 @@ import LogoutButton from '@/components/LogoutButton';
 import MenuList from '@/components/MenuList';
 import { ModeToggle } from '@/components/ModeToggle';
 import logoImage from '@/public/logo.svg';
+import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import React from 'react';
 
 interface BoardsLayoutProps {
@@ -11,6 +13,13 @@ interface BoardsLayoutProps {
 }
 
 export default function BoardsLayout({ children }: BoardsLayoutProps) {
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get('access_token');
+
+  if (!accessToken) {
+    redirect('/');
+  }
+
   return (
     <div className="h-screen md:grid md:grid-cols-[16rem_1fr] xl:grid-cols-[300px_1fr]">
       <aside className="hidden flex-col border-r border-primaryLinesLight bg-white dark:border-primaryLinesDark dark:bg-primaryDarkGrey md:flex">
