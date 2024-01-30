@@ -1,6 +1,7 @@
 import useTasks from '@/hooks/task/useTasks';
 import { Status } from './BoardForm/formSchema';
 import Dot from './Dot';
+import ErrorWrapper from './ErrorWrapper';
 import StatusListItemSkeleton from './StatusListItemSkeleton';
 import TaskList from './TaskList';
 
@@ -17,12 +18,12 @@ export default function StatusListItem({
     return <StatusListItemSkeleton />;
   }
 
-  if (!tasks) {
-    return null;
-  }
-
-  if (error) {
-    return <div>error</div>;
+  if (!tasks || error) {
+    return (
+      <li className="flex min-h-full w-[280px] items-center justify-center rounded-lg bg-primaryWhite px-4 py-[23px] shadow-task dark:bg-primaryDarkGrey">
+        <ErrorWrapper message="Something went wrong during fetch tasks" />
+      </li>
+    );
   }
 
   return (
