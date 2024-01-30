@@ -1,4 +1,6 @@
+import CreateBoardForm from '@/components/BoardForm/CreateBoardForm';
 import { Button } from '@/components/UI/Button';
+import { DialogTrigger } from '@/components/UI/Dialog';
 import logoImage from '@/public/logo.svg';
 import Image from 'next/image';
 
@@ -15,7 +17,11 @@ export default function BoardsPage() {
       <main className="flex flex-col items-center justify-center gap-6">
         <h2 className="text-heading-m">Hello, User Name</h2>
 
-        <Button large>Create board</Button>
+        <CreateBoardForm>
+          <DialogTrigger asChild>
+            <Button large>create board</Button>
+          </DialogTrigger>
+        </CreateBoardForm>
       </main>
     </>
   );
