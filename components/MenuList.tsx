@@ -1,6 +1,7 @@
 'use client';
 
 import useBoards from '@/hooks/board/useBoards';
+import { PiWarningBold } from 'react-icons/pi';
 import { TbLayoutBoardSplit } from 'react-icons/tb';
 import CreateBoardForm from './BoardForm/CreateBoardForm';
 import MenuListItem from './MenuListItem';
@@ -19,11 +20,21 @@ export default function MenuList() {
   }
 
   if (error || !boards) {
-    return <div>error</div>;
-  }
-
-  if (!boards.length) {
-    return <div>no boards create at least one</div>;
+    return (
+      <div className="flex h-full items-center justify-center p-6">
+        <div className="flex flex-col items-center gap-3">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-red-100 dark:bg-red-200">
+            <PiWarningBold className="text-lg text-red-600" />
+          </div>
+          <div className="text-center">
+            <h3 className="text-primaryRed">Error</h3>
+            <p className="text-heading-m font-normal">
+              Something went wrong during fetch list of boards
+            </p>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
