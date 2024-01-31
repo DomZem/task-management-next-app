@@ -17,14 +17,7 @@ export default function BoardActions() {
   } = useBoardQuery();
   const { data: statuses, isLoading, error } = useStatuses();
 
-  if (
-    isBoardLoading ||
-    boardError ||
-    error ||
-    isLoading ||
-    !board ||
-    !statuses?.length
-  ) {
+  if (isBoardLoading || boardError || error || isLoading || !board) {
     return null;
   }
 
@@ -39,17 +32,19 @@ export default function BoardActions() {
 
         <PopoverContent>
           <ul className="flex flex-col gap-4">
-            <li>
-              <EditBoardForm
-                boardId={board.id}
-                boardName={board.name}
-                statuses={statuses}
-              >
-                <DialogTrigger asChild>
-                  <button>Edit</button>
-                </DialogTrigger>
-              </EditBoardForm>
-            </li>
+            {!!statuses?.length && (
+              <li>
+                <EditBoardForm
+                  boardId={board.id}
+                  boardName={board.name}
+                  statuses={statuses}
+                >
+                  <DialogTrigger asChild>
+                    <button>Edit</button>
+                  </DialogTrigger>
+                </EditBoardForm>
+              </li>
+            )}
 
             <li>
               <DeleteBoardModal boardId={board.id} boardName={board.name} />
