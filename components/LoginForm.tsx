@@ -1,6 +1,7 @@
 'use client';
 
 import { axiosInstance } from '@/lib/axios';
+import { User } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
@@ -31,7 +32,7 @@ const defaultValues: Login = {
   password: '',
 };
 
-const login = async (data: Login) => {
+const login = async (data: Login): Promise<User> => {
   const response = await axiosInstance.post('/auth/login', data, {
     withCredentials: true,
   });
@@ -48,7 +49,8 @@ export default function LoginForm() {
 
   const { mutate, isPending } = useMutation({
     mutationFn: login,
-    onSuccess: () => {
+    onSuccess: ({ firstName, lastName }) => {
+      localStorage.setItem('user_name', `${firstName} ${lastName}`);
       router.push('/boards');
     },
     onError: (err: Error | AxiosError) => {},

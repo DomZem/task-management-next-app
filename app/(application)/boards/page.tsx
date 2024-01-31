@@ -1,4 +1,5 @@
 import CreateBoardForm from '@/components/BoardForm/CreateBoardForm';
+import GreetingTitle from '@/components/GreetingTitle';
 import MobileNav from '@/components/MobileNav';
 import { Button } from '@/components/UI/Button';
 import { DialogTrigger } from '@/components/UI/Dialog';
@@ -21,7 +22,7 @@ export default function BoardsPage() {
       </header>
 
       <main className="flex h-full flex-col items-center justify-center gap-6">
-        <h2 className="text-heading-m">Hello, User Name</h2>
+        <GreetingTitle />
 
         <CreateBoardForm>
           <DialogTrigger asChild>
