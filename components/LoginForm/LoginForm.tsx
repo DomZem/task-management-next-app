@@ -1,15 +1,10 @@
 'use client';
 
-import { axiosInstance } from '@/lib/axios';
-import { User } from '@/types';
+import useLogin from '@/hooks/auth/useLogin';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useMutation } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
-import { useRouter } from 'next/navigation';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { LuLoader2 } from 'react-icons/lu';
-import * as z from 'zod';
-import { Button } from './UI/Button';
+import { Button } from '../UI/Button';
 import {
   Form,
   FormControl,
@@ -18,53 +13,27 @@ import {
   FormInputWrapper,
   FormItem,
   FormLabel,
-} from './UI/Form';
-
-const loginFormSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(1, { message: 'Required' }),
-});
-
-export type Login = z.infer<typeof loginFormSchema>;
+} from '../UI/Form';
+import { Login, loginFormSchema } from './formSchema';
 
 const defaultValues: Login = {
   email: '',
   password: '',
 };
 
-const login = async (data: Login): Promise<User> => {
-  const response = await axiosInstance.post('/auth/login', data, {
-    withCredentials: true,
-  });
-
-  return response.data;
-};
-
 export default function LoginForm() {
-  const router = useRouter();
   const form = useForm<Login>({
     resolver: zodResolver(loginFormSchema),
     defaultValues,
   });
 
-  const { mutate, isPending } = useMutation({
-    mutationFn: login,
-    onSuccess: ({ firstName, lastName }) => {
-      localStorage.setItem('user_name', `${firstName} ${lastName}`);
-      router.push('/boards');
-    },
-    onError: (err: Error | AxiosError) => {},
-  });
-
-  const onSubmit: SubmitHandler<Login> = (data) => {
-    mutate(data);
-  };
+  const { mutate, isPending } = useLogin();
 
   return (
     <Form {...form}>
       <form
         method="post"
-        onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={form.handleSubmit((data) => mutate(data))}
         className="space-y-8"
       >
         <FormField
