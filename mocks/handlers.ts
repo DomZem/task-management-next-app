@@ -9,4 +9,8 @@ export const handlers = [
   rest.get(`${API_URL}/boards`, (req, res, ctx) => {
     return res(ctx.status(200));
   }),
+
+  rest.delete(`${API_URL}/boards/:id`, (req, res, ctx) => {
+    return res(ctx.status(200));
+  }),
 ];
