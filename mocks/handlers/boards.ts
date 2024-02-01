@@ -3,7 +3,7 @@ import { rest } from 'msw';
 
 export const boards = [
   rest.get(`${API_URL}/boards`, (req, res, ctx) => {
-    return res(ctx.status(200));
+    return res(ctx.status(200), ctx.json([]));
   }),
 
   rest.delete(`${API_URL}/boards/:id`, (req, res, ctx) => {

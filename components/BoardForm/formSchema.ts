@@ -15,3 +15,5 @@ export const boardFormSchema = z.object({
 export type Board = z.infer<typeof boardFormSchema>;
 
 export type Status = z.infer<typeof statusFormSchema>;
+
+export type BoardNoStatuses = Omit<Board, 'statuses'>;

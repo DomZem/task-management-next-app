@@ -9,11 +9,14 @@ import { DialogTrigger } from './UI/Dialog';
 import Loading from './UI/Loading';
 
 export default function MenuList() {
-  const { data: boards, isLoading, error } = useBoards();
+  const { data: boards, isFetching, error } = useBoards();
 
-  if (isLoading) {
+  if (isFetching) {
     return (
-      <section className="flex h-full items-center justify-center">
+      <section
+        className="flex h-full items-center justify-center"
+        data-testid="loading"
+      >
         <Loading />
       </section>
     );
@@ -41,11 +44,8 @@ export default function MenuList() {
         </nav>
 
         <CreateBoardForm>
-          <DialogTrigger asChild>
-            <button className="flex w-60 cursor-pointer items-center rounded-r-[100px] px-6 py-3.5 text-primaryPurple duration-200">
-              <TbLayoutBoardSplit className="text-xl" />
-              <p className="ml-3 text-heading-m">+ Create New Board</p>
-            </button>
+          <DialogTrigger className="flex w-60 cursor-pointer items-center rounded-r-[100px] px-6 py-3.5 text-heading-m capitalize text-primaryPurple duration-200">
+            <TbLayoutBoardSplit className="mr-3 text-xl" />+ create new board
           </DialogTrigger>
         </CreateBoardForm>
       </div>
