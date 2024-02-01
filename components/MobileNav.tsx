@@ -18,6 +18,7 @@ export default function MobileNav() {
           className={`text-xs font-bold text-primaryPurple duration-200 ${isOpen && 'rotate-180'}`}
         />
       </DialogTrigger>
+
       <DialogContent className="max-w-[264px] p-0">
         <section>
           <MenuList />
