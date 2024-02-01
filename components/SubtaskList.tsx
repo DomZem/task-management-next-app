@@ -9,7 +9,7 @@ interface SubtaskListProps {
 export default function SubtaskList({ subtasks }: SubtaskListProps) {
   return (
     <div>
-      <p className="label-text mb-4">
+      <p className="label-text mb-4" data-testid="completed-subtasks-count">
         Subtasks ({getCompletedSubtasksAmount(subtasks)}{' '}
         <span className="normal-case">of</span> {subtasks.length})
       </p>
