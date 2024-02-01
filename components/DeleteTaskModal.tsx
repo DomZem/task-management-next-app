@@ -26,8 +26,8 @@ export default function DeleteTaskModal({
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger>
-        <button className="text-primaryRed">Delete task</button>
+      <AlertDialogTrigger className="text-primaryRed">
+        Delete task
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
