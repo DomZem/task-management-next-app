@@ -39,7 +39,7 @@ export default function StatusList() {
   }
 
   return (
-    <ul className="flex min-h-full min-w-fit gap-x-4">
+    <ul className="flex min-h-full min-w-fit gap-6">
       {statuses.map((status) => (
         <StatusListItem status={status} key={status.id} />
       ))}
