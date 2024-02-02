@@ -5,4 +5,8 @@ export const subtasks = [
   rest.get(`${API_URL}/subtasks`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json([]));
   }),
+
+  rest.patch(`${API_URL}/subtasks/:id`, (req, res, ctx) => {
+    return res(ctx.status(200));
+  }),
 ];
