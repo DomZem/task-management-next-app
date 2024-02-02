@@ -8,9 +8,10 @@ import {
   Form,
   FormControl,
   FormField,
-  FormInputWrapper,
+  FormInput,
   FormItem,
   FormLabel,
+  FormMessage,
 } from '../UI/Form';
 import { Input } from '../UI/Input';
 import { RegisterType, registerFormSchema } from './formSchema';
@@ -42,9 +43,8 @@ export default function RegisterForm({ defaultValues }: RegisterFormProps) {
                 <FormLabel>first name</FormLabel>
 
                 <FormControl>
-                  <FormInputWrapper>
-                    <Input {...field} />
-                  </FormInputWrapper>
+                  <FormInput {...field} />
+                  <FormMessage />
                 </FormControl>
               </FormItem>
             )}
@@ -57,9 +57,8 @@ export default function RegisterForm({ defaultValues }: RegisterFormProps) {
                 <FormLabel>last name</FormLabel>
 
                 <FormControl>
-                  <FormInputWrapper>
-                    <Input {...field} />
-                  </FormInputWrapper>
+                  <Input {...field} />
+                  <FormMessage />
                 </FormControl>
               </FormItem>
             )}
@@ -74,9 +73,8 @@ export default function RegisterForm({ defaultValues }: RegisterFormProps) {
               <FormLabel>address email</FormLabel>
 
               <FormControl>
-                <FormInputWrapper>
-                  <Input {...field} />
-                </FormInputWrapper>
+                <FormInput {...field} />
+                <FormMessage />
               </FormControl>
             </FormItem>
           )}
@@ -90,9 +88,8 @@ export default function RegisterForm({ defaultValues }: RegisterFormProps) {
               <FormLabel>password</FormLabel>
 
               <FormControl>
-                <FormInputWrapper>
-                  <Input {...field} type="password" />
-                </FormInputWrapper>
+                <FormInput {...field} type="password" />
+                <FormMessage />
               </FormControl>
             </FormItem>
           )}
@@ -106,9 +103,8 @@ export default function RegisterForm({ defaultValues }: RegisterFormProps) {
               <FormLabel>confirm password</FormLabel>
 
               <FormControl>
-                <FormInputWrapper>
-                  <Input {...field} type="password" />
-                </FormInputWrapper>
+                <FormInput {...field} type="password" />
+                <FormMessage />
               </FormControl>
             </FormItem>
           )}

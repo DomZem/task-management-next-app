@@ -10,9 +10,9 @@ import {
   FormControl,
   FormField,
   FormInput,
-  FormInputWrapper,
   FormItem,
   FormLabel,
+  FormMessage,
 } from '../UI/Form';
 import { Login, loginFormSchema } from './formSchema';
 
@@ -44,9 +44,8 @@ export default function LoginForm() {
               <FormLabel>address email</FormLabel>
 
               <FormControl>
-                <FormInputWrapper>
-                  <FormInput {...field} />
-                </FormInputWrapper>
+                <FormInput {...field} />
+                <FormMessage />
               </FormControl>
             </FormItem>
           )}
@@ -60,9 +59,8 @@ export default function LoginForm() {
               <FormLabel>password</FormLabel>
 
               <FormControl>
-                <FormInputWrapper>
-                  <FormInput type="password" {...field} />
-                </FormInputWrapper>
+                <FormInput type="password" {...field} />
+                <FormMessage />
               </FormControl>
             </FormItem>
           )}

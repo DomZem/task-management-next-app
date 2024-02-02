@@ -110,13 +110,23 @@ FormInput.displayName = 'FormInput';
 
 const FormControl = React.forwardRef<
   React.ElementRef<typeof Slot>,
-  React.ComponentPropsWithoutRef<typeof Slot>
->(({ ...props }, ref) => {
+  React.ComponentPropsWithoutRef<typeof Slot> & { isNotInput?: boolean }
+>(({ className, isNotInput, children, ...props }, ref) => {
   const { error, formItemId, formDescriptionId, formMessageId } =
     useFormField();
+  const [isActive, setIsActive] = React.useState(false);
+
+  const inputStyle =
+    !isNotInput &&
+    cn(
+      'flex rounded border border-primaryBorder ring-primaryPurple px-4 py-2 text-body-l',
+      error && 'border-primaryRed',
+      isActive && 'ring-2 border-transparent',
+    );
 
   return (
     <Slot
+      className={cn(inputStyle, className)}
       ref={ref}
       id={formItemId}
       aria-describedby={
@@ -124,29 +134,17 @@ const FormControl = React.forwardRef<
           ? `${formDescriptionId}`
           : `${formDescriptionId} ${formMessageId}`
       }
+      onFocus={() => setIsActive(true)}
+      onBlur={() => setIsActive(false)}
       aria-invalid={!!error}
       {...props}
-    />
+    >
+      <div>{children}</div>
+    </Slot>
   );
 });
 
 FormControl.displayName = 'FormControl';
-
-const FormInputWrapper = ({ children }: { children: React.ReactNode }) => {
-  const { error } = useFormField();
-
-  return (
-    <div
-      className={cn(
-        'flex rounded border border-primaryBorder px-4 py-2 text-body-l',
-        error && 'border-primaryRed',
-      )}
-    >
-      {children}
-      <FormMessage className="text-nowrap" />
-    </div>
-  );
-};
 
 const FormDescription = React.forwardRef<
   HTMLParagraphElement,
@@ -180,7 +178,7 @@ const FormMessage = React.forwardRef<
     <p
       ref={ref}
       id={formMessageId}
-      className={cn('text-primaryRed', className)}
+      className={cn('text-nowrap text-primaryRed', className)}
       {...props}
     >
       {body}
@@ -195,7 +193,6 @@ export {
   FormDescription,
   FormField,
   FormInput,
-  FormInputWrapper,
   FormItem,
   FormLabel,
   FormMessage,

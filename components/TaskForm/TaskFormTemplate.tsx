@@ -14,9 +14,9 @@ import {
   FormControl,
   FormField,
   FormInput,
-  FormInputWrapper,
   FormItem,
   FormLabel,
+  FormMessage,
 } from '../UI/Form';
 import {
   Select,
@@ -106,9 +106,8 @@ export default function TaskFormTemplate({
                   <FormLabel>title</FormLabel>
 
                   <FormControl>
-                    <FormInputWrapper>
-                      <FormInput placeholder="e.g. Make coffee" {...field} />
-                    </FormInputWrapper>
+                    <FormInput placeholder="e.g. Make coffee" {...field} />
+                    <FormMessage />
                   </FormControl>
                 </FormItem>
               )}
@@ -120,7 +119,7 @@ export default function TaskFormTemplate({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>description</FormLabel>
-                  <FormControl>
+                  <FormControl isNotInput>
                     <Textarea
                       placeholder="e.g. It's always good to take a break. This 15 minute break will  recharge the batteries a little."
                       className="resize-none"
@@ -148,7 +147,7 @@ export default function TaskFormTemplate({
                       field.value === 0 ? undefined : field.value.toString()
                     }
                   >
-                    <FormControl>
+                    <FormControl isNotInput>
                       <SelectTrigger>
                         <SelectValue placeholder="Select status" />
                       </SelectTrigger>
