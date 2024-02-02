@@ -1,13 +1,13 @@
 import useSubtasks from '@/hooks/subtask/useSubtasks';
 import { getCompletedSubtasksAmount } from '@/lib/utils';
 import { motion } from 'framer-motion';
-import { Task } from './TaskForm/formSchema';
+import { TaskNoSubtasks } from './TaskForm/formSchema';
 import TaskListItemContent from './TaskListItemContent';
 import TaskListItemSkeleton from './TaskListItemSkeleton';
 import { Dialog, DialogTrigger } from './UI/Dialog';
 
 interface TaskListItemProps {
-  task: Omit<Task, 'subtasks'>;
+  task: TaskNoSubtasks;
 }
 
 const item = {

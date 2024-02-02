@@ -17,3 +17,5 @@ export const taskFormSchema = z.object({
 export type Task = z.infer<typeof taskFormSchema>;
 
 export type Subtask = z.infer<typeof subtaskFormSchema>;
+
+export type TaskNoSubtasks = Omit<Task, 'subtasks'>;
