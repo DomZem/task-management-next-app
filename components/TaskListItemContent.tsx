@@ -2,13 +2,13 @@ import { HiDotsVertical } from 'react-icons/hi';
 import DeleteTaskModal from './DeleteTaskModal';
 import SubtaskList from './SubtaskList';
 import EditTaskForm from './TaskForm/EditTaskForm';
-import { Subtask, Task } from './TaskForm/formSchema';
+import { Subtask, TaskNoSubtasks } from './TaskForm/formSchema';
 import TaskStatus from './TaskStatus';
 import { DialogContent, DialogDescription, DialogTitle } from './UI/Dialog';
 import { Popover, PopoverContent, PopoverTrigger } from './UI/Popover';
 
 interface TaskListItemContentProps {
-  task: Omit<Task, 'subtasks'>;
+  task: TaskNoSubtasks;
   subtasks: Subtask[];
 }
 
@@ -44,7 +44,11 @@ export default function TaskListItemContent({
         </Popover>
       </div>
 
-      {description && <DialogDescription>{description}</DialogDescription>}
+      {description && (
+        <DialogDescription data-testid="task-list-item-description">
+          {description}
+        </DialogDescription>
+      )}
 
       {!!subtasks.length && <SubtaskList subtasks={subtasks} />}
 

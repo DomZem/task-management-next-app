@@ -83,8 +83,8 @@ export default function TaskFormTemplate({
       )}
 
       {variant === 'edit' && (
-        <DialogTrigger asChild>
-          <button>Edit Task</button>
+        <DialogTrigger className="capitalize duration-200 hover:text-primaryBlack dark:hover:text-white">
+          edit task
         </DialogTrigger>
       )}
 
