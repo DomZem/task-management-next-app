@@ -14,7 +14,7 @@ export default function MenuList() {
   if (isFetching) {
     return (
       <section
-        className="flex h-full items-center justify-center"
+        className="flex items-center justify-center pb-4 pt-8"
         data-testid="loading"
       >
         <Loading />
@@ -24,8 +24,11 @@ export default function MenuList() {
 
   if (!boards || error) {
     return (
-      <div className="flex h-full items-center justify-center p-6">
-        <ErrorWrapper message="Something went wrong during fetch boards" />
+      <div className="flex items-center justify-center p-6">
+        <ErrorWrapper
+          className="text-center"
+          message="Something went wrong during fetch boards"
+        />
       </div>
     );
   }
