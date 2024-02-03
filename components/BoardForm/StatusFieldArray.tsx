@@ -30,7 +30,7 @@ export default function StatusFieldArray() {
 
       <ul className="mb-3 flex flex-col gap-3">
         {fields.map((item, index) => (
-          <li className="flex items-center gap-1" key={item.name}>
+          <li className="flex items-center gap-1" key={item.id}>
             <div className="grid flex-1 grid-cols-[2fr_5rem] gap-2">
               <FormField
                 control={control}
