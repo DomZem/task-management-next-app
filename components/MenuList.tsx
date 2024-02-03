@@ -9,9 +9,9 @@ import { DialogTrigger } from './UI/Dialog';
 import Loading from './UI/Loading';
 
 export default function MenuList() {
-  const { data: boards, isFetching, error } = useBoards();
+  const { data: boards, isLoading, error } = useBoards();
 
-  if (isFetching) {
+  if (isLoading) {
     return (
       <section
         className="flex items-center justify-center pb-4 pt-8"
