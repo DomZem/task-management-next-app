@@ -9,7 +9,7 @@ export default function BoardTitle() {
   const { data: board, isLoading, error } = useBoard();
 
   if (isLoading) {
-    return <Skeleton className="h-[15px] w-[150px]" />;
+    return <Skeleton className="h-[15px] w-[150px]" data-testid="loading" />;
   }
 
   if (error) {

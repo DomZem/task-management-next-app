@@ -1,9 +1,9 @@
-import { Board } from '@/components/BoardForm/formSchema';
+import { BoardNoStatuses } from '@/components/BoardForm/formSchema';
 import { axiosInstance } from '@/lib/axios';
 import { useQuery } from '@tanstack/react-query';
 import useSlug from '../useSlug';
 
-const getBoard = async (boardId: number): Promise<Omit<Board, 'statuses'>> => {
+const getBoard = async (boardId: number): Promise<BoardNoStatuses> => {
   const response = await axiosInstance.get(`/boards/${boardId}`, {
     withCredentials: true,
   });
