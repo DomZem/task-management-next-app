@@ -9,9 +9,9 @@ import {
   FormControl,
   FormField,
   FormInput,
+  FormInputWrapper,
   FormItem,
   FormLabel,
-  FormMessage,
 } from '../UI/Form';
 import { Input } from '../UI/Input';
 import { RegisterType, registerFormSchema } from './formSchema';
@@ -42,10 +42,11 @@ export default function RegisterForm({ defaultValues }: RegisterFormProps) {
               <FormItem>
                 <FormLabel>first name</FormLabel>
 
-                <FormControl>
-                  <FormInput {...field} />
-                  <FormMessage />
-                </FormControl>
+                <FormInputWrapper>
+                  <FormControl>
+                    <FormInput {...field} />
+                  </FormControl>
+                </FormInputWrapper>
               </FormItem>
             )}
           />
@@ -56,10 +57,11 @@ export default function RegisterForm({ defaultValues }: RegisterFormProps) {
               <FormItem>
                 <FormLabel>last name</FormLabel>
 
-                <FormControl>
-                  <Input {...field} />
-                  <FormMessage />
-                </FormControl>
+                <FormInputWrapper>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                </FormInputWrapper>
               </FormItem>
             )}
           />
@@ -72,10 +74,11 @@ export default function RegisterForm({ defaultValues }: RegisterFormProps) {
             <FormItem>
               <FormLabel>address email</FormLabel>
 
-              <FormControl>
-                <FormInput {...field} />
-                <FormMessage />
-              </FormControl>
+              <FormInputWrapper>
+                <FormControl>
+                  <FormInput {...field} />
+                </FormControl>
+              </FormInputWrapper>
             </FormItem>
           )}
         />
@@ -87,10 +90,11 @@ export default function RegisterForm({ defaultValues }: RegisterFormProps) {
             <FormItem>
               <FormLabel>password</FormLabel>
 
-              <FormControl>
-                <FormInput {...field} type="password" />
-                <FormMessage />
-              </FormControl>
+              <FormInputWrapper>
+                <FormControl>
+                  <FormInput {...field} type="password" />
+                </FormControl>
+              </FormInputWrapper>
             </FormItem>
           )}
         />
@@ -102,10 +106,11 @@ export default function RegisterForm({ defaultValues }: RegisterFormProps) {
             <FormItem>
               <FormLabel>confirm password</FormLabel>
 
-              <FormControl>
-                <FormInput {...field} type="password" />
-                <FormMessage />
-              </FormControl>
+              <FormInputWrapper>
+                <FormControl>
+                  <FormInput {...field} type="password" />
+                </FormControl>
+              </FormInputWrapper>
             </FormItem>
           )}
         />

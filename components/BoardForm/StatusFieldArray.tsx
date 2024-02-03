@@ -7,8 +7,8 @@ import {
   FormControl,
   FormField,
   FormInput,
+  FormInputWrapper,
   FormItem,
-  FormMessage,
 } from '../UI/Form';
 import { Select, SelectContent, SelectItem, SelectTrigger } from '../UI/Select';
 import { Board } from './formSchema';
@@ -36,10 +36,11 @@ export default function StatusFieldArray() {
                 name={`statuses.${index}.name`}
                 render={({ field }) => (
                   <FormItem>
-                    <FormControl>
-                      <FormInput placeholder="e.g. Todo" {...field} />
-                      <FormMessage />
-                    </FormControl>
+                    <FormInputWrapper>
+                      <FormControl>
+                        <FormInput placeholder="e.g. Todo" {...field} />
+                      </FormControl>
+                    </FormInputWrapper>
                   </FormItem>
                 )}
               />
@@ -53,7 +54,7 @@ export default function StatusFieldArray() {
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
-                      <FormControl className="h-full w-full" isNotInput>
+                      <FormControl className="h-full w-full">
                         <SelectTrigger className="h-full">
                           <Dot color={field.value} />
                         </SelectTrigger>

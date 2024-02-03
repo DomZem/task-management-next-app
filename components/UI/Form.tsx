@@ -110,23 +110,13 @@ FormInput.displayName = 'FormInput';
 
 const FormControl = React.forwardRef<
   React.ElementRef<typeof Slot>,
-  React.ComponentPropsWithoutRef<typeof Slot> & { isNotInput?: boolean }
->(({ className, isNotInput, children, ...props }, ref) => {
+  React.ComponentPropsWithoutRef<typeof Slot>
+>(({ ...props }, ref) => {
   const { error, formItemId, formDescriptionId, formMessageId } =
     useFormField();
-  const [isActive, setIsActive] = React.useState(false);
-
-  const inputStyle =
-    !isNotInput &&
-    cn(
-      'flex rounded border border-primaryBorder ring-primaryPurple px-4 py-2 text-body-l',
-      error && 'border-primaryRed',
-      isActive && 'ring-2 border-transparent',
-    );
 
   return (
     <Slot
-      className={cn(inputStyle, className)}
       ref={ref}
       id={formItemId}
       aria-describedby={
@@ -134,17 +124,33 @@ const FormControl = React.forwardRef<
           ? `${formDescriptionId}`
           : `${formDescriptionId} ${formMessageId}`
       }
-      onFocus={() => setIsActive(true)}
-      onBlur={() => setIsActive(false)}
       aria-invalid={!!error}
       {...props}
-    >
-      <div>{children}</div>
-    </Slot>
+    />
   );
 });
 
 FormControl.displayName = 'FormControl';
+
+const FormInputWrapper = ({ children }: { children: React.ReactNode }) => {
+  const [isActive, setIsActive] = React.useState(false);
+  const { error } = useFormField();
+
+  return (
+    <div
+      className={cn(
+        'flex rounded border border-primaryBorder px-4 py-2 text-body-l ring-primaryPurple',
+        error && 'border-primaryRed ring-primaryRed',
+        isActive && 'border-transparent ring-2',
+      )}
+      onFocus={() => setIsActive(true)}
+      onBlur={() => setIsActive(false)}
+    >
+      {children}
+      <FormMessage />
+    </div>
+  );
+};
 
 const FormDescription = React.forwardRef<
   HTMLParagraphElement,
@@ -193,6 +199,7 @@ export {
   FormDescription,
   FormField,
   FormInput,
+  FormInputWrapper,
   FormItem,
   FormLabel,
   FormMessage,
