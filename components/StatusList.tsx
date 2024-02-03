@@ -1,6 +1,6 @@
 'use client';
 
-import { default as useBoardQuery } from '@/hooks/board/useBoard';
+import useBoard from '@/hooks/board/useBoard';
 import useStatuses from '@/hooks/useStatuses';
 import { MdAdd } from 'react-icons/md';
 import BoardEmpty from './BoardEmpty';
@@ -14,7 +14,7 @@ export default function StatusList() {
     data: board,
     isLoading: isBoardLoading,
     error: boardError,
-  } = useBoardQuery();
+  } = useBoard();
 
   const { data: statuses, isLoading, error } = useStatuses();
 
