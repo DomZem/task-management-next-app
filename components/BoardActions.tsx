@@ -39,8 +39,8 @@ export default function BoardActions() {
                   boardName={board.name}
                   statuses={statuses}
                 >
-                  <DialogTrigger asChild>
-                    <button>Edit</button>
+                  <DialogTrigger className="capitalize duration-200 hover:text-primaryBlack dark:hover:text-white">
+                    edit board
                   </DialogTrigger>
                 </EditBoardForm>
               </li>

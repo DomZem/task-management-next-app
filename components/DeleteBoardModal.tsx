@@ -26,8 +26,8 @@ export default function DeleteBoardModal({
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger className="text-primaryRed">
-        Delete board
+      <AlertDialogTrigger className="capitalize text-primaryRed duration-200 hover:text-primaryRedHover">
+        delete board
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
