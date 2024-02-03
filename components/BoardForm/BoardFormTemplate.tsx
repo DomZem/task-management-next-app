@@ -10,6 +10,7 @@ import {
   FormInputWrapper,
   FormItem,
   FormLabel,
+  FormMessage,
 } from '../UI/Form';
 import StatusFieldArray from './StatusFieldArray';
 import { Board, boardFormSchema } from './formSchema';
@@ -69,6 +70,8 @@ export default function BoardFormTemplate({
                     <FormControl>
                       <FormInput placeholder="e.g. Web Design" {...field} />
                     </FormControl>
+
+                    <FormMessage />
                   </FormInputWrapper>
                 </FormItem>
               )}

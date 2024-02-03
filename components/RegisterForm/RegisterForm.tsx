@@ -12,8 +12,8 @@ import {
   FormInputWrapper,
   FormItem,
   FormLabel,
+  FormMessage,
 } from '../UI/Form';
-import { Input } from '../UI/Input';
 import { RegisterType, registerFormSchema } from './formSchema';
 
 interface RegisterFormProps {
@@ -46,6 +46,8 @@ export default function RegisterForm({ defaultValues }: RegisterFormProps) {
                   <FormControl>
                     <FormInput {...field} />
                   </FormControl>
+
+                  <FormMessage />
                 </FormInputWrapper>
               </FormItem>
             )}
@@ -59,8 +61,10 @@ export default function RegisterForm({ defaultValues }: RegisterFormProps) {
 
                 <FormInputWrapper>
                   <FormControl>
-                    <Input {...field} />
+                    <FormInput {...field} />
                   </FormControl>
+
+                  <FormMessage />
                 </FormInputWrapper>
               </FormItem>
             )}
@@ -78,6 +82,8 @@ export default function RegisterForm({ defaultValues }: RegisterFormProps) {
                 <FormControl>
                   <FormInput {...field} />
                 </FormControl>
+
+                <FormMessage />
               </FormInputWrapper>
             </FormItem>
           )}
@@ -94,6 +100,8 @@ export default function RegisterForm({ defaultValues }: RegisterFormProps) {
                 <FormControl>
                   <FormInput {...field} type="password" />
                 </FormControl>
+
+                <FormMessage />
               </FormInputWrapper>
             </FormItem>
           )}
@@ -110,6 +118,8 @@ export default function RegisterForm({ defaultValues }: RegisterFormProps) {
                 <FormControl>
                   <FormInput {...field} type="password" />
                 </FormControl>
+
+                <FormMessage />
               </FormInputWrapper>
             </FormItem>
           )}

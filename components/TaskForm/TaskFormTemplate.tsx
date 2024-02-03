@@ -17,6 +17,7 @@ import {
   FormInputWrapper,
   FormItem,
   FormLabel,
+  FormMessage,
 } from '../UI/Form';
 import {
   Select,
@@ -109,6 +110,8 @@ export default function TaskFormTemplate({
                     <FormControl>
                       <FormInput placeholder="e.g. Make coffee" {...field} />
                     </FormControl>
+
+                    <FormMessage />
                   </FormInputWrapper>
                 </FormItem>
               )}

@@ -9,6 +9,7 @@ import {
   FormInput,
   FormInputWrapper,
   FormItem,
+  FormMessage,
 } from '../UI/Form';
 import { Select, SelectContent, SelectItem, SelectTrigger } from '../UI/Select';
 import { Board } from './formSchema';
@@ -40,6 +41,8 @@ export default function StatusFieldArray() {
                       <FormControl>
                         <FormInput placeholder="e.g. Todo" {...field} />
                       </FormControl>
+
+                      <FormMessage />
                     </FormInputWrapper>
                   </FormItem>
                 )}

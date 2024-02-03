@@ -7,6 +7,7 @@ import {
   FormInput,
   FormInputWrapper,
   FormItem,
+  FormMessage,
 } from '../UI/Form';
 import { Task } from './formSchema';
 
@@ -33,6 +34,8 @@ export default function SubtasksFieldArray() {
                     <FormControl>
                       <FormInput placeholder="e.g. Make coffee" {...field} />
                     </FormControl>
+
+                    <FormMessage />
                   </FormInputWrapper>
                 </FormItem>
               )}

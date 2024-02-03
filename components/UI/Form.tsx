@@ -147,7 +147,6 @@ const FormInputWrapper = ({ children }: { children: React.ReactNode }) => {
       onBlur={() => setIsActive(false)}
     >
       {children}
-      <FormMessage />
     </div>
   );
 };
