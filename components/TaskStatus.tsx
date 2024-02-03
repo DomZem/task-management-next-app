@@ -1,5 +1,6 @@
 import useUpdateTaskStatus from '@/hooks/task/useUpdateTaskStatus';
 import useStatuses from '@/hooks/useStatuses';
+import { useState } from 'react';
 import {
   Select,
   SelectContent,
@@ -17,6 +18,7 @@ export default function TaskStatus({
   taskId,
   statusId: currentStatusId,
 }: TaskStatusProps) {
+  const [isOpen, setIsOpen] = useState(false);
   const { data: statuses, error, isLoading } = useStatuses();
   const { mutate, isPending } = useUpdateTaskStatus(taskId, currentStatusId);
 
@@ -29,11 +31,13 @@ export default function TaskStatus({
     <div>
       <p className="label-text mb-2">current status</p>
       <Select
+        open={isOpen}
+        onOpenChange={() => setIsOpen((prev) => !prev)}
         defaultValue={currentStatusId.toString()}
         disabled={isPending}
         onValueChange={(statusId) => mutate(parseInt(statusId))}
       >
-        <SelectTrigger>
+        <SelectTrigger isOpen={isOpen}>
           <SelectValue placeholder="Select status" />
         </SelectTrigger>
         <SelectContent>

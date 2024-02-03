@@ -1,7 +1,6 @@
 import { colors } from '@/data/colors';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { MdClose } from 'react-icons/md';
-import Dot from '../Dot';
 import { Button } from '../UI/Button';
 import {
   FormControl,
@@ -11,7 +10,7 @@ import {
   FormItem,
   FormMessage,
 } from '../UI/Form';
-import { Select, SelectContent, SelectItem, SelectTrigger } from '../UI/Select';
+import ColorSelect from './ColorSelect';
 import { Board } from './formSchema';
 
 export default function StatusFieldArray() {
@@ -48,34 +47,7 @@ export default function StatusFieldArray() {
                 )}
               />
 
-              <FormField
-                control={control}
-                name={`statuses.${index}.color`}
-                render={({ field }) => (
-                  <FormItem>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl className="h-full w-full">
-                        <SelectTrigger className="h-full">
-                          <Dot color={field.value} />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {colors.map(({ name, value }) => (
-                          <div className="flex items-center gap-3" key={value}>
-                            <div>
-                              <Dot color={value} />
-                            </div>
-                            <SelectItem value={value}>{name}</SelectItem>
-                          </div>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </FormItem>
-                )}
-              />
+              <ColorSelect index={index}/>
             </div>
 
             <button type="button" className="p-1" onClick={() => remove(index)}>

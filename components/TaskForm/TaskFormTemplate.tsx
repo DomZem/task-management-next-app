@@ -1,5 +1,6 @@
 import useStatuses from '@/hooks/useStatuses';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { IoMdAdd } from 'react-icons/io';
 import { Button } from '../UI/Button';
@@ -45,6 +46,7 @@ export default function TaskFormTemplate({
   isPending,
   isSuccess,
 }: TaskFormTemplateProps) {
+  const [isOpen, setIsOpen] = useState(false);
   const { data: statuses, isLoading, error } = useStatuses();
 
   const methods = useForm<Task>({
@@ -142,7 +144,10 @@ export default function TaskFormTemplate({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>status</FormLabel>
+
                   <Select
+                    open={isOpen}
+                    onOpenChange={() => setIsOpen((prev) => !prev)}
                     onValueChange={(value) => {
                       field.onChange(parseInt(value, 10));
                     }}
@@ -152,10 +157,11 @@ export default function TaskFormTemplate({
                     }
                   >
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger isOpen={isOpen}>
                         <SelectValue placeholder="Select status" />
                       </SelectTrigger>
                     </FormControl>
+
                     <SelectContent>
                       {statuses.map(({ id, name }) => (
                         <SelectItem value={id.toString()} key={id}>
