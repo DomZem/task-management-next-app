@@ -47,7 +47,7 @@ export default function RegisterForm({ defaultValues }: RegisterFormProps) {
                     <FormInput {...field} />
                   </FormControl>
 
-                  <FormMessage />
+                  <FormMessage data-testid="first-name-error-message" />
                 </FormInputWrapper>
               </FormItem>
             )}
@@ -64,7 +64,7 @@ export default function RegisterForm({ defaultValues }: RegisterFormProps) {
                     <FormInput {...field} />
                   </FormControl>
 
-                  <FormMessage />
+                  <FormMessage data-testid="last-name-error-message" />
                 </FormInputWrapper>
               </FormItem>
             )}
@@ -83,7 +83,7 @@ export default function RegisterForm({ defaultValues }: RegisterFormProps) {
                   <FormInput {...field} />
                 </FormControl>
 
-                <FormMessage />
+                <FormMessage data-testid="address-email-error-message" />
               </FormInputWrapper>
             </FormItem>
           )}
@@ -101,7 +101,7 @@ export default function RegisterForm({ defaultValues }: RegisterFormProps) {
                   <FormInput {...field} type="password" />
                 </FormControl>
 
-                <FormMessage />
+                <FormMessage data-testid="password-error-message" />
               </FormInputWrapper>
             </FormItem>
           )}
@@ -119,7 +119,7 @@ export default function RegisterForm({ defaultValues }: RegisterFormProps) {
                   <FormInput {...field} type="password" />
                 </FormControl>
 
-                <FormMessage />
+                <FormMessage data-testid="confirm-password-error-message" />
               </FormInputWrapper>
             </FormItem>
           )}

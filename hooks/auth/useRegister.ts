@@ -1,11 +1,12 @@
 import { RegisterType } from '@/components/RegisterForm/formSchema';
 import { axiosInstance } from '@/lib/axios';
+import { User } from '@/types';
 import { useMutation } from '@tanstack/react-query';
 import axios, { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 
-const register = async (data: RegisterType) => {
+const register = async (data: RegisterType): Promise<User> => {
   const response = await axiosInstance.post('/auth/register', data, {
     withCredentials: true,
   });
@@ -35,7 +36,8 @@ export default function useRegister() {
           return message;
         },
       }),
-    onSuccess: () => {
+    onSuccess: ({ firstName, lastName }) => {
+      localStorage.setItem('user_name', `${firstName} ${lastName}`);
       router.push('/boards');
     },
   });
