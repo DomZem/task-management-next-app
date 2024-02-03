@@ -1,6 +1,7 @@
 'use client';
 
 import useBoard from '@/hooks/board/useBoard';
+import { handleError } from '@/lib/axios';
 import { notFound } from 'next/navigation';
 
 export default function BoardTitle() {
@@ -10,7 +11,11 @@ export default function BoardTitle() {
     return <h2 className="text-heading-l">loading ...</h2>;
   }
 
-  if (error || !board) {
+  if (error) {
+    handleError(error);
+  }
+
+  if (!board) {
     return notFound();
   }
 

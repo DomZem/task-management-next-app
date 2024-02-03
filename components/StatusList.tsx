@@ -2,6 +2,8 @@
 
 import useBoard from '@/hooks/board/useBoard';
 import useStatuses from '@/hooks/useStatuses';
+import { handleError } from '@/lib/axios';
+import { notFound } from 'next/navigation';
 import { MdAdd } from 'react-icons/md';
 import BoardEmpty from './BoardEmpty';
 import EditBoardForm from './BoardForm/EditBoardForm';
@@ -26,12 +28,16 @@ export default function StatusList() {
     );
   }
 
-  if (!board) {
-    return <div>no board</div>;
+  if (error) {
+    handleError(error);
   }
 
-  if (error || boardError) {
-    return <div>error</div>;
+  if (boardError) {
+    handleError(boardError);
+  }
+
+  if (!board) {
+    return notFound();
   }
 
   if (!statuses?.length) {
