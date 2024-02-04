@@ -1,9 +1,9 @@
-import { Board } from '@/components/BoardForm/formSchema';
+import { Board, BoardNoStatuses } from '@/components/BoardForm/formSchema';
 import { axiosInstance } from '@/lib/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
-const updateBoard = async (board: Board): Promise<Omit<Board, 'statuses'>> => {
+const updateBoard = async (board: Board): Promise<BoardNoStatuses> => {
   const response = await axiosInstance.put(`/boards/${board.id}`, board, {
     withCredentials: true,
   });

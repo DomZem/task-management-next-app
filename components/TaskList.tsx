@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
-import { Task } from './TaskForm/formSchema';
+import { TaskNoSubtasks } from './TaskForm/formSchema';
 import TaskListItem from './TaskListItem';
 
 interface TaskListProps {
-  tasks: Omit<Task, 'subtasks'>[];
+  tasks: TaskNoSubtasks[];
 }
 
 const container = {

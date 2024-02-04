@@ -2,10 +2,10 @@
 
 import useUpdateTask from '@/hooks/task/useUpdateTask';
 import TaskFormTemplate from './TaskFormTemplate';
-import { Subtask, Task } from './formSchema';
+import { Subtask, TaskNoSubtasks } from './formSchema';
 
 interface EditTaskFormProps {
-  task: Omit<Task, 'subtasks'>;
+  task: TaskNoSubtasks;
   subtasks: Subtask[];
 }
 

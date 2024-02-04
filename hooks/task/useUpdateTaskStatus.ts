@@ -1,4 +1,4 @@
-import { Task } from '@/components/TaskForm/formSchema';
+import { TaskNoSubtasks } from '@/components/TaskForm/formSchema';
 import { axiosInstance } from '@/lib/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 const updateTaskStatus = async (
   taskId: number,
   statusId: number,
-): Promise<Omit<Task, 'subtasks'>> => {
+): Promise<TaskNoSubtasks> => {
   const response = await axiosInstance.patch(
     `/tasks/${taskId}`,
     {

@@ -3,10 +3,10 @@
 import useSlug from '@/hooks/useSlug';
 import Link from 'next/link';
 import { TbLayoutBoardSplit } from 'react-icons/tb';
-import { Board } from './BoardForm/formSchema';
+import { BoardNoStatuses } from './BoardForm/formSchema';
 
 interface MenuListItemProps {
-  board: Omit<Board, 'statuses'>;
+  board: BoardNoStatuses;
 }
 
 export default function MenuListItem({
