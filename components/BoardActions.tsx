@@ -30,7 +30,7 @@ export default function BoardActions() {
           <HiDotsVertical className="text-xl text-primaryMediumGrey" />
         </PopoverTrigger>
 
-        <PopoverContent>
+        <PopoverContent align="end" sideOffset={24}>
           <ul className="flex flex-col gap-4">
             {!!statuses?.length && (
               <li>
