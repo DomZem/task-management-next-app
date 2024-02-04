@@ -10,7 +10,7 @@ interface EditTaskFormProps {
 }
 
 export default function EditTaskForm({ task, subtasks }: EditTaskFormProps) {
-  const { mutate, isPending, isSuccess } = useUpdateTask();
+  const { mutate, isPending, isSuccess } = useUpdateTask(task.statusId);
 
   return (
     <TaskFormTemplate
