@@ -19,9 +19,12 @@ export default function MobileNav() {
         />
       </DialogTrigger>
 
-      <DialogContent className="max-w-[264px] p-0">
-        <section>
-          <MenuList />
+      <DialogContent className="flex max-h-[90%] max-w-[264px] overflow-hidden p-0">
+        <section className="grid flex-1 overflow-hidden">
+          <div className="overflow-auto">
+            <MenuList />
+          </div>
+
           <div className="flex flex-col gap-3 p-4">
             <ModeToggle />
             <LogoutButton />

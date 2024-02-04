@@ -21,8 +21,8 @@ export default function BoardsLayout({ children }: BoardsLayoutProps) {
   }
 
   return (
-    <div className="h-screen md:grid md:grid-cols-[16rem_1fr] xl:grid-cols-[300px_1fr]">
-      <aside className="hidden flex-col border-r border-primaryLinesLight bg-white dark:border-primaryLinesDark dark:bg-primaryDarkGrey md:flex">
+    <div className="h-screen overflow-hidden md:grid md:grid-cols-[16rem_1fr] xl:grid-cols-[300px_1fr]">
+      <aside className="hidden flex-col overflow-hidden border-r border-primaryLinesLight bg-white dark:border-primaryLinesDark dark:bg-primaryDarkGrey md:flex">
         <header className="flex h-20 items-center gap-4 px-6 xl:h-24">
           <Image src={logoImage} alt="logo" />
 
@@ -31,7 +31,7 @@ export default function BoardsLayout({ children }: BoardsLayoutProps) {
           </Link>
         </header>
 
-        <section className="flex flex-1 flex-col justify-between">
+        <section className="flex flex-1 flex-col justify-between overflow-hidden">
           <MenuList />
 
           <div className="flex flex-col gap-3 p-6">

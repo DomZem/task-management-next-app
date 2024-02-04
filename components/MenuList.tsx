@@ -34,13 +34,13 @@ export default function MenuList() {
   }
 
   return (
-    <div className="pr-6 pt-4">
-      <div className="flex flex-col overflow-hidden">
+    <div className="overflow-y-auto pr-6 pt-4">
+      <div className="flex flex-col">
         <h3 className="mb-[19px] ml-6 text-[12px] font-bold uppercase leading-normal tracking-[2.4px] text-primaryMediumGrey">
           all boards ({boards.length})
         </h3>
 
-        <nav className="flex-1 overflow-y-auto overflow-x-hidden">
+        <nav className="flex-1">
           {boards.map((board) => (
             <MenuListItem board={board} key={board.id} />
           ))}
