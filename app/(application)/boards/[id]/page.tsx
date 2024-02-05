@@ -10,7 +10,7 @@ export default function BoardDetailsPage() {
     <div className="grid h-full grid-rows-[4rem_1fr] overflow-hidden md:grid-rows-[5rem_1fr] xl:grid-rows-[6rem_1fr]">
       <header className="flex items-center justify-between border-b border-primaryLinesLight bg-white px-4 dark:border-primaryLinesDark dark:bg-primaryDarkGrey">
         <section className="flex items-center gap-4">
-          <Image src={logoImage} alt="logo" />
+          <Image src={logoImage} alt="logo" className="md:hidden" />
 
           <div className="flex items-center gap-2">
             <BoardTitle />
