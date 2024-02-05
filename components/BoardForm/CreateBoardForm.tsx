@@ -12,7 +12,7 @@ interface CreateBoardFormProps {
 export default function CreateBoardForm({
   children: dialogTrigger,
 }: CreateBoardFormProps) {
-  const { mutate, isPending, isSuccess } = useCreateBoard();
+  const { mutate, isPending, isError } = useCreateBoard();
 
   return (
     <BoardFormTemplate
@@ -30,7 +30,7 @@ export default function CreateBoardForm({
       }}
       onSubmit={(board: Board) => mutate(board)}
       isPending={isPending}
-      isSuccess={isSuccess}
+      isSuccess={!isPending && !isError}
     >
       {dialogTrigger}
     </BoardFormTemplate>
