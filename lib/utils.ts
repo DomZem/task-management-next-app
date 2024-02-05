@@ -9,3 +9,6 @@ export const cn = (...inputs: ClassValue[]) => {
 export const getCompletedSubtasksAmount = (subtasks: Subtask[]): number => {
   return subtasks.filter(({ isComplete }) => isComplete).length;
 };
+
+export const getMaxMessage = (charactersLength: number) =>
+  `Max ${charactersLength} characters`;
