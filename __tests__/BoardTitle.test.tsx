@@ -6,26 +6,20 @@ import { server } from '@/mocks/server';
 import { render, screen, waitFor } from '@testing-library/react';
 import { rest } from 'msw';
 
-let boardId = 1;
-
 jest.mock('next/navigation', () => ({
   usePathname() {
-    return `/boards/${boardId}`;
+    return '/boards/1';
   },
 }));
 
 describe('BoardTitle component', () => {
   describe('Unit', () => {
-    afterEach(() => {
-      boardId++;
-    });
-
     it('should render "Platform Launch" text when response is success', async () => {
       server.use(
         rest.get(`${API_URL}/boards/:id`, (req, res, ctx) => {
           return res(
             ctx.json<BoardNoStatuses>({
-              id: boardId,
+              id: 1,
               name: 'Platform Launch',
             }),
           );

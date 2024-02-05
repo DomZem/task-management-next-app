@@ -14,7 +14,7 @@ jest.mock('next/navigation', () => ({
     };
   },
   usePathname() {
-    return 'boards/1';
+    return `/boards/1`;
   },
 }));
 
@@ -126,7 +126,9 @@ describe('MenuList component', () => {
         </TestQueryProvider>,
       );
 
-      expect(screen.getByTestId('loading')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByTestId('loading')).toBeInTheDocument();
+      });
     });
   });
 });

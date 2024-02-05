@@ -9,7 +9,7 @@ import { rest } from 'msw';
 
 jest.mock('next/navigation', () => ({
   usePathname() {
-    return 'boards/1';
+    return '/boards/1';
   },
 }));
 
