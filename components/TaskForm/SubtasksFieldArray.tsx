@@ -7,6 +7,7 @@ import {
   FormInput,
   FormInputWrapper,
   FormItem,
+  FormLabel,
   FormMessage,
 } from '../UI/Form';
 import { Task } from './formSchema';
@@ -29,10 +30,18 @@ export default function SubtasksFieldArray() {
               control={control}
               name={`subtasks.${index}.title`}
               render={({ field }) => (
-                <FormItem className="flex-1">
+                <FormItem className="flex-1 space-y-0">
+                  <FormLabel className="hidden">
+                    subtask title - {index}
+                  </FormLabel>
+
                   <FormInputWrapper>
                     <FormControl>
-                      <FormInput placeholder="e.g. Make coffee" {...field} />
+                      <FormInput
+                        className="mt-0"
+                        placeholder="e.g. Make coffee"
+                        {...field}
+                      />
                     </FormControl>
 
                     <FormMessage />

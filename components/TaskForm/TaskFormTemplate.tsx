@@ -75,8 +75,9 @@ export default function TaskFormTemplate({
             disabled={!statuses.length}
             asChild
           >
-            <Button large>Add new task</Button>
+            <Button large>add new task</Button>
           </DialogTrigger>
+
           <DialogTrigger className="md:hidden" asChild>
             <Button className="flex h-8 w-12 items-center justify-center p-0 md:hidden">
               <IoMdAdd className="text-lg font-bold" />
@@ -96,6 +97,7 @@ export default function TaskFormTemplate({
           {variant === 'create' && 'add new task'}
           {variant === 'edit' && 'edit task'}
         </DialogTitle>
+
         <Form {...methods}>
           <form
             onSubmit={methods.handleSubmit(handleFormSubmit)}
@@ -103,7 +105,7 @@ export default function TaskFormTemplate({
           >
             <FormField
               control={methods.control}
-              name={`title`}
+              name="title"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>title</FormLabel>
@@ -113,7 +115,7 @@ export default function TaskFormTemplate({
                       <FormInput placeholder="e.g. Make coffee" {...field} />
                     </FormControl>
 
-                    <FormMessage />
+                    <FormMessage data-testid="title-error-message" />
                   </FormInputWrapper>
                 </FormItem>
               )}
@@ -125,6 +127,7 @@ export default function TaskFormTemplate({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>description</FormLabel>
+
                   <FormControl>
                     <Textarea
                       placeholder="e.g. It's always good to take a break. This 15 minute break will  recharge the batteries a little."
@@ -153,7 +156,9 @@ export default function TaskFormTemplate({
                     }}
                     // while we are creating task the statusId from database will be no te provided
                     defaultValue={
-                      field.value === 0 ? undefined : field.value.toString()
+                      field.value === 0
+                        ? statuses[0].id.toString()
+                        : field.value.toString()
                     }
                   >
                     <FormControl>
@@ -175,8 +180,8 @@ export default function TaskFormTemplate({
             />
 
             <Button type="submit" className="w-full" disabled={isPending}>
-              {variant === 'create' && 'Create Task'}
-              {variant === 'edit' && 'Save Changes'}
+              {variant === 'create' && 'create task'}
+              {variant === 'edit' && 'save changes'}
             </Button>
           </form>
         </Form>
