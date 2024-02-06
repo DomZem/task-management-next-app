@@ -156,9 +156,7 @@ export default function TaskFormTemplate({
                     }}
                     // while we are creating task the statusId from database will be no te provided
                     defaultValue={
-                      field.value === 0
-                        ? statuses[0].id.toString()
-                        : field.value.toString()
+                      field.value === 0 ? undefined : field.value.toString()
                     }
                   >
                     <FormControl>

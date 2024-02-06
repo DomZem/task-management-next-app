@@ -9,12 +9,34 @@ import { server } from '@/mocks/server';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { rest } from 'msw';
+import {
+  openAddNewTaskForm,
+  submitCreateTask,
+  waitForAddNewTaskDialogTrigger,
+} from './CreateTaskForm.test';
 
 jest.mock('next/navigation', () => ({
   usePathname() {
     return '/boards/1';
   },
 }));
+
+export const getStatusesSuccess = () => {
+  server.use(
+    rest.get(`${API_URL}/statuses`, (req, res, ctx) => {
+      return res(
+        ctx.status(200),
+        ctx.json<Status[]>([
+          {
+            id: 1,
+            name: 'todo',
+            color: colors[0].value,
+          },
+        ]),
+      );
+    }),
+  );
+};
 
 const emptyValues: Task = {
   id: 0,
@@ -46,24 +68,7 @@ const filledValues: Task = {
 
 const mockHandleSubmit = jest.fn();
 
-const getStatusesSuccess = () => {
-  server.use(
-    rest.get(`${API_URL}/statuses`, (req, res, ctx) => {
-      return res(
-        ctx.status(200),
-        ctx.json<Status[]>([
-          {
-            id: 1,
-            name: 'todo',
-            color: colors[0].value,
-          },
-        ]),
-      );
-    }),
-  );
-};
-
-const typeValues = async () => {
+export const typeValues = async () => {
   const titleInput = screen.getByLabelText('title');
   await userEvent.type(titleInput, 'Design onboarding flow');
 
@@ -79,16 +84,6 @@ const typeValues = async () => {
   };
 };
 
-const waitForAddNewTaskDialogTrigger = async () => {
-  await waitFor(() => {
-    expect(
-      screen.getByRole('button', {
-        name: /add new task/i,
-      }),
-    );
-  });
-};
-
 const waitForEditTaskDialogTrigger = async () => {
   await waitFor(() => {
     expect(
@@ -99,25 +94,11 @@ const waitForEditTaskDialogTrigger = async () => {
   });
 };
 
-const openAddNewTaskForm = async () => {
-  const addNewTaskDialogTrigger = screen.getByRole('button', {
-    name: /add new task/i,
-  });
-  await userEvent.click(addNewTaskDialogTrigger);
-};
-
 const openEditTaskForm = async () => {
   const editTaskDialogTrigger = screen.getByRole('button', {
     name: /edit task/i,
   });
   await userEvent.click(editTaskDialogTrigger);
-};
-
-const submitCreateTask = async () => {
-  const createTaskButton = screen.getByRole('button', {
-    name: /create task/i,
-  });
-  await userEvent.click(createTaskButton);
 };
 
 const submitEditTask = async () => {
@@ -129,30 +110,6 @@ const submitEditTask = async () => {
 
 describe('TaskFormTemplate component', () => {
   describe('Unit', () => {
-    it('should render "add new task" text inside DialogTitle when variant prop is "create"', async () => {
-      getStatusesSuccess();
-
-      render(
-        <TestQueryProvider>
-          <TaskFormTemplate
-            variant="create"
-            defaultValues={emptyValues}
-            onSubmit={mockHandleSubmit}
-            isPending={false}
-            isSuccess={false}
-          />
-        </TestQueryProvider>,
-      );
-
-      await waitFor(() => {
-        expect(
-          screen.getByRole('button', {
-            name: /add new task/i,
-          }),
-        );
-      });
-    });
-
     it('should render "edit task" text inside DialogTrigger when variant prop is "edit', async () => {
       getStatusesSuccess();
 
@@ -175,36 +132,6 @@ describe('TaskFormTemplate component', () => {
           }),
         );
       });
-    });
-
-    it('should render two DialogTrigger when variant prop is "create"', async () => {
-      getStatusesSuccess();
-
-      render(
-        <TestQueryProvider>
-          <TaskFormTemplate
-            variant="create"
-            defaultValues={emptyValues}
-            onSubmit={mockHandleSubmit}
-            isPending={false}
-            isSuccess={false}
-          />
-        </TestQueryProvider>,
-      );
-
-      await waitFor(() => {
-        expect(
-          screen.getByRole('button', {
-            name: /add new task/i,
-          }),
-        );
-      });
-
-      expect(
-        screen.getByRole('button', {
-          name: '',
-        }),
-      );
     });
 
     it('should disable DialogTrigger with "add new task" text inside when variant prop is "create" and statuses array is empty', async () => {
@@ -253,32 +180,6 @@ describe('TaskFormTemplate component', () => {
           name: /edit task/i,
         }),
       ).toBeInTheDocument();
-    });
-
-    it('should render "create task" text inside submit button when variant prop is "create" and disable it when isPending prop is "true"', async () => {
-      getStatusesSuccess();
-
-      render(
-        <TestQueryProvider>
-          <TaskFormTemplate
-            variant="create"
-            defaultValues={emptyValues}
-            onSubmit={mockHandleSubmit}
-            isPending
-            isSuccess={false}
-          />
-        </TestQueryProvider>,
-      );
-
-      await waitForAddNewTaskDialogTrigger();
-
-      await openAddNewTaskForm();
-
-      expect(
-        screen.getByRole('button', {
-          name: /create task/i,
-        }),
-      ).toBeDisabled();
     });
 
     it('should render "save changes" text inside submit button when variant prop is "edit" and disable it when isPending prop is "true"', async () => {
@@ -377,62 +278,6 @@ describe('TaskFormTemplate component', () => {
       await waitFor(() => {
         expect(container.firstChild).toBeNull();
       });
-    });
-
-    it('should clear inputs when isSuccess prop is "true" and variant prop is "create"', async () => {
-      getStatusesSuccess();
-
-      render(
-        <TestQueryProvider>
-          <TaskFormTemplate
-            variant="create"
-            defaultValues={emptyValues}
-            onSubmit={mockHandleSubmit}
-            isPending={false}
-            isSuccess
-          />
-        </TestQueryProvider>,
-      );
-
-      await waitForAddNewTaskDialogTrigger();
-
-      await openAddNewTaskForm();
-
-      // type values
-      const { titleInput, subtaskTitle } = await typeValues();
-
-      await submitCreateTask();
-
-      expect(titleInput).toHaveTextContent('');
-      expect(subtaskTitle).toHaveTextContent('');
-    });
-
-    it('should no clear inputs when isSuccess prop is "false" and variant prop is "create"', async () => {
-      getStatusesSuccess();
-
-      render(
-        <TestQueryProvider>
-          <TaskFormTemplate
-            variant="create"
-            defaultValues={emptyValues}
-            onSubmit={mockHandleSubmit}
-            isPending={false}
-            isSuccess={false}
-          />
-        </TestQueryProvider>,
-      );
-
-      await waitForAddNewTaskDialogTrigger();
-
-      await openAddNewTaskForm();
-
-      // type values
-      const { titleInput, subtaskTitle } = await typeValues();
-
-      await submitCreateTask();
-
-      expect(titleInput).not.toHaveValue('');
-      expect(subtaskTitle).not.toHaveValue('');
     });
 
     it('should not clear inputs when isSuccess prop is "true" and variant prop is "edit"', async () => {
