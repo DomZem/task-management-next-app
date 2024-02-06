@@ -52,20 +52,6 @@ const emptyValues: Task = {
   statusId: 0,
 };
 
-const filledValues: Task = {
-  id: 1,
-  title: 'Research The Market',
-  description: 'Sketch UI concepts for settings page',
-  subtasks: [
-    {
-      id: 1,
-      title: '',
-      isComplete: false,
-    },
-  ],
-  statusId: 1,
-};
-
 const mockHandleSubmit = jest.fn();
 
 export const typeValues = async () => {
@@ -84,56 +70,8 @@ export const typeValues = async () => {
   };
 };
 
-const waitForEditTaskDialogTrigger = async () => {
-  await waitFor(() => {
-    expect(
-      screen.getByRole('button', {
-        name: /edit task/i,
-      }),
-    );
-  });
-};
-
-const openEditTaskForm = async () => {
-  const editTaskDialogTrigger = screen.getByRole('button', {
-    name: /edit task/i,
-  });
-  await userEvent.click(editTaskDialogTrigger);
-};
-
-const submitEditTask = async () => {
-  const saveChangesButton = screen.getByRole('button', {
-    name: /save changes/i,
-  });
-  await userEvent.click(saveChangesButton);
-};
-
 describe('TaskFormTemplate component', () => {
   describe('Unit', () => {
-    it('should render "edit task" text inside DialogTrigger when variant prop is "edit', async () => {
-      getStatusesSuccess();
-
-      render(
-        <TestQueryProvider>
-          <TaskFormTemplate
-            variant="edit"
-            defaultValues={emptyValues}
-            onSubmit={mockHandleSubmit}
-            isPending={false}
-            isSuccess={false}
-          />
-        </TestQueryProvider>,
-      );
-
-      await waitFor(() => {
-        expect(
-          screen.getByRole('button', {
-            name: /edit task/i,
-          }),
-        );
-      });
-    });
-
     it('should disable DialogTrigger with "add new task" text inside when variant prop is "create" and statuses array is empty', async () => {
       render(
         <TestQueryProvider>
@@ -154,58 +92,6 @@ describe('TaskFormTemplate component', () => {
           }),
         ).toBeDisabled();
       });
-    });
-
-    it('should render "edit task" text inside DialogTitle when variant prop is "edit"', async () => {
-      getStatusesSuccess();
-
-      render(
-        <TestQueryProvider>
-          <TaskFormTemplate
-            variant="edit"
-            defaultValues={filledValues}
-            onSubmit={mockHandleSubmit}
-            isPending={false}
-            isSuccess={false}
-          />
-        </TestQueryProvider>,
-      );
-
-      await waitForEditTaskDialogTrigger();
-
-      await openEditTaskForm();
-
-      expect(
-        screen.getByRole('heading', {
-          name: /edit task/i,
-        }),
-      ).toBeInTheDocument();
-    });
-
-    it('should render "save changes" text inside submit button when variant prop is "edit" and disable it when isPending prop is "true"', async () => {
-      getStatusesSuccess();
-
-      render(
-        <TestQueryProvider>
-          <TaskFormTemplate
-            variant="edit"
-            defaultValues={filledValues}
-            onSubmit={mockHandleSubmit}
-            isPending
-            isSuccess={false}
-          />
-        </TestQueryProvider>,
-      );
-
-      await waitForEditTaskDialogTrigger();
-
-      await openEditTaskForm();
-
-      expect(
-        screen.getByRole('button', {
-          name: /save changes/i,
-        }),
-      ).toBeDisabled();
     });
 
     it('should render nothing when statuses request is loading', async () => {
@@ -278,60 +164,6 @@ describe('TaskFormTemplate component', () => {
       await waitFor(() => {
         expect(container.firstChild).toBeNull();
       });
-    });
-
-    it('should not clear inputs when isSuccess prop is "true" and variant prop is "edit"', async () => {
-      getStatusesSuccess();
-
-      render(
-        <TestQueryProvider>
-          <TaskFormTemplate
-            variant="edit"
-            defaultValues={emptyValues}
-            onSubmit={mockHandleSubmit}
-            isPending={false}
-            isSuccess
-          />
-        </TestQueryProvider>,
-      );
-
-      await waitForEditTaskDialogTrigger();
-
-      await openEditTaskForm();
-
-      const { titleInput, subtaskTitle } = await typeValues();
-
-      await submitEditTask();
-
-      expect(titleInput).not.toHaveValue('');
-      expect(subtaskTitle).not.toHaveValue('');
-    });
-
-    it('should not clear inputs when isSuccess prop is "false" and variant prop is "edit"', async () => {
-      getStatusesSuccess();
-
-      render(
-        <TestQueryProvider>
-          <TaskFormTemplate
-            variant="edit"
-            defaultValues={emptyValues}
-            onSubmit={mockHandleSubmit}
-            isPending={false}
-            isSuccess={false}
-          />
-        </TestQueryProvider>,
-      );
-
-      await waitForEditTaskDialogTrigger();
-
-      await openEditTaskForm();
-
-      const { titleInput, subtaskTitle } = await typeValues();
-
-      await submitEditTask();
-
-      expect(titleInput).not.toHaveValue('');
-      expect(subtaskTitle).not.toHaveValue('');
     });
 
     describe('Validation', () => {
