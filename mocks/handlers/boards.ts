@@ -6,6 +6,10 @@ export const boards = [
     return res(ctx.status(200), ctx.json([]));
   }),
 
+  rest.post(`${API_URL}/boards`, (req, res, ctx) => {
+    return res(ctx.status(200));
+  }),
+
   rest.get(`${API_URL}/boards/:id`, (req, res, ctx) => {
     return res(ctx.status(200));
   }),

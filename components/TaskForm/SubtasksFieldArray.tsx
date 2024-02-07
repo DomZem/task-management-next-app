@@ -37,11 +37,7 @@ export default function SubtasksFieldArray() {
 
                   <FormInputWrapper>
                     <FormControl>
-                      <FormInput
-                        className="mt-0"
-                        placeholder="e.g. Make coffee"
-                        {...field}
-                      />
+                      <FormInput placeholder="e.g. Make coffee" {...field} />
                     </FormControl>
 
                     <FormMessage />

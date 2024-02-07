@@ -54,6 +54,7 @@ export default function BoardFormTemplate({
           {variant === 'create' && 'add new board'}
           {variant === 'edit' && 'edit board'}
         </DialogTitle>
+
         <Form {...methods}>
           <form
             onSubmit={methods.handleSubmit(handleFormSubmit)}

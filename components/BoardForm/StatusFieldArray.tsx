@@ -8,6 +8,7 @@ import {
   FormInput,
   FormInputWrapper,
   FormItem,
+  FormLabel,
   FormMessage,
 } from '../UI/Form';
 import ColorSelect from './ColorSelect';
@@ -35,7 +36,11 @@ export default function StatusFieldArray() {
                 control={control}
                 name={`statuses.${index}.name`}
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="space-y-0">
+                    <FormLabel className="hidden">
+                      status name - {index}
+                    </FormLabel>
+
                     <FormInputWrapper>
                       <FormControl>
                         <FormInput placeholder="e.g. Todo" {...field} />
@@ -47,7 +52,7 @@ export default function StatusFieldArray() {
                 )}
               />
 
-              <ColorSelect index={index}/>
+              <ColorSelect index={index} />
             </div>
 
             <button type="button" className="p-1" onClick={() => remove(index)}>
