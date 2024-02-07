@@ -1,6 +1,5 @@
 import useStatuses from '@/hooks/useStatuses';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { IoMdAdd } from 'react-icons/io';
 import { Button } from '../UI/Button';
@@ -20,14 +19,8 @@ import {
   FormLabel,
   FormMessage,
 } from '../UI/Form';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '../UI/Select';
 import { Textarea } from '../UI/Textarea';
+import StatusSelect from './StatusSelect';
 import SubtasksFieldArray from './SubtasksFieldArray';
 import { Task, taskFormSchema } from './formSchema';
 
@@ -46,7 +39,6 @@ export default function TaskFormTemplate({
   isPending,
   isSuccess,
 }: TaskFormTemplateProps) {
-  const [isOpen, setIsOpen] = useState(false);
   const { data: statuses, isLoading, error } = useStatuses();
 
   const methods = useForm<Task>({
@@ -78,7 +70,11 @@ export default function TaskFormTemplate({
             <Button large>add new task</Button>
           </DialogTrigger>
 
-          <DialogTrigger className="md:hidden" asChild>
+          <DialogTrigger
+            className="md:hidden"
+            disabled={!statuses.length}
+            asChild
+          >
             <Button className="flex h-8 w-12 items-center justify-center p-0 md:hidden">
               <IoMdAdd className="text-lg font-bold" />
             </Button>
@@ -141,41 +137,7 @@ export default function TaskFormTemplate({
 
             <SubtasksFieldArray />
 
-            <FormField
-              control={methods.control}
-              name="statusId"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>status</FormLabel>
-
-                  <Select
-                    open={isOpen}
-                    onOpenChange={() => setIsOpen((prev) => !prev)}
-                    onValueChange={(value) => {
-                      field.onChange(parseInt(value, 10));
-                    }}
-                    // while we are creating task the statusId from database will be no te provided
-                    defaultValue={
-                      field.value === 0 ? undefined : field.value.toString()
-                    }
-                  >
-                    <FormControl>
-                      <SelectTrigger isOpen={isOpen}>
-                        <SelectValue placeholder="Select status" />
-                      </SelectTrigger>
-                    </FormControl>
-
-                    <SelectContent>
-                      {statuses.map(({ id, name }) => (
-                        <SelectItem value={id.toString()} key={id}>
-                          {name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </FormItem>
-              )}
-            />
+            <StatusSelect statuses={statuses} />
 
             <Button type="submit" className="w-full" disabled={isPending}>
               {variant === 'create' && 'create task'}
