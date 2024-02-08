@@ -22,7 +22,7 @@ export default function TaskStatus({
   const { data: statuses, error, isLoading } = useStatuses();
   const { mutate, isPending } = useUpdateTaskStatus(taskId, currentStatusId);
 
-  // Return null, because in component above called StatusList is also uses useStatuses hook and that component handle these request states
+  // Return null, because in component above called StatusList which also uses useStatuses hook handle these request states
   if (isLoading || error || !statuses?.length) {
     return null;
   }
@@ -30,6 +30,7 @@ export default function TaskStatus({
   return (
     <div>
       <p className="label-text mb-2">current status</p>
+
       <Select
         open={isOpen}
         onOpenChange={() => setIsOpen((prev) => !prev)}
@@ -40,6 +41,7 @@ export default function TaskStatus({
         <SelectTrigger isOpen={isOpen}>
           <SelectValue placeholder="Select status" />
         </SelectTrigger>
+
         <SelectContent>
           {statuses.map(({ id, name }) => (
             <SelectItem value={id.toString()} key={id}>

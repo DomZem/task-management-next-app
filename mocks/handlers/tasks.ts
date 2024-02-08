@@ -14,6 +14,10 @@ export const tasks = [
     return res(ctx.status(200));
   }),
 
+  rest.patch(`${API_URL}/tasks/:id`, (req, res, ctx) => {
+    return res(ctx.status(200));
+  }),
+
   rest.delete(`${API_URL}/tasks/:id`, (req, res, ctx) => {
     return res(ctx.status(200));
   }),
