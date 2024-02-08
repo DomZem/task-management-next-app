@@ -1,6 +1,6 @@
 'use client';
 
-import useBoardQuery from '@/hooks/board/useBoard';
+import useBoard from '@/hooks/board/useBoard';
 import useStatuses from '@/hooks/useStatuses';
 import { HiDotsVertical } from 'react-icons/hi';
 import EditBoardForm from './BoardForm/EditBoardForm';
@@ -14,7 +14,7 @@ export default function BoardActions() {
     data: board,
     isLoading: isBoardLoading,
     error: boardError,
-  } = useBoardQuery();
+  } = useBoard();
   const { data: statuses, isLoading, error } = useStatuses();
 
   if (isBoardLoading || boardError || error || isLoading || !board) {
@@ -26,7 +26,10 @@ export default function BoardActions() {
       <CreateTaskForm />
 
       <Popover>
-        <PopoverTrigger className="p-2">
+        <PopoverTrigger
+          className="p-2"
+          data-testid="board-actions-popover-trigger"
+        >
           <HiDotsVertical className="text-xl text-primaryMediumGrey" />
         </PopoverTrigger>
 
