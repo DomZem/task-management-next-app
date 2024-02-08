@@ -22,7 +22,10 @@ export default function StatusList() {
 
   if (isLoading || isBoardLoading) {
     return (
-      <section className="flex h-full items-center justify-center">
+      <section
+        className="flex h-full items-center justify-center"
+        data-testid="status-list-loading"
+      >
         <Loading />
       </section>
     );
