@@ -46,6 +46,10 @@ If you want to check the app immediately, you can use that example account: <br 
 - Address email: tester@gmail.com
 - Password: zaq1@WSX
 
+If you are using the local version of app use these credentials: <br />
+- Address email: anakin.skywalker@gmail.com
+- Password: zaq1@WSX
+
 <h2>🛠️ Installation Steps:</h2>
 <p>⚠️ Before you run these commands make sure you run your backend server. <br /> 
 You can do that by using that repo: https://github.com/DomZem/task-management-nest-api. I described there step by step what to do. <br />
